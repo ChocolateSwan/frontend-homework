@@ -43,7 +43,7 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('привет, мир'), 'пвет, м');
 		assert.strictEqual(letters('hello, world'), 'he, wrd');
 		assert.strictEqual(letters('мама мыла раму'), 'ылру');
-		assert.strictEqual(letters('"Кукареку!", сказал Петух'), 'Кр!,сзлПтх');
+		assert.strictEqual(letters('"Кукареку!", сказал Петух'), 'Кр!,сзлПтх'); //'р!,сзлПтх'
 
 		assert.strictEqual(letters('мама мыла раму', true), 'ма ылру');
 		assert.strictEqual(letters('от топота копыт', true), 'от пакы');
@@ -52,5 +52,16 @@ QUnit.module('Тестируем функцию letters', function () {
 		assert.strictEqual(letters('мама мыла раму', false), 'ыл раму');
 		assert.strictEqual(letters('от топота копыт', false), 'а копыт');
 		assert.strictEqual(letters('hello world', false), 'he world');
+	});
+	
+	QUnit.test('Работа функции при вводе пустой строки', function (assert) {
+		assert.strictEqual(letters(''), '');
+		assert.strictEqual(letters('', true), '');
+		assert.strictEqual(letters('', false), '');
+	});
+	
+	
+	QUnit.test('Удаляет все пробелы', function (assert) {
+		assert.strictEqual(letters('rmv       al    spce'), 'rmvalspce');
 	});
 });
